@@ -1,0 +1,1293 @@
+Show Database   =>    show databases;
+
+Create Database  =>   create database database_name;
+
+Use Databse  =>  use database_name;
+
+To check whether Databse contains tables  => show tables;
+
+***********DDL: It deals with the structure of the databse.**********
+
+1.CREATE:
+
+Create Table  =>  create table table_name(column_name1 datatype, column_name2 datatype);
+Describe Table  =>  desc table_name;
+
+
+2.DROP:
+
+Dropping Table  =>  drop table table_name;
+Dropping Database  =>  drop database database_name;
+
+
+3.ALTER:
+
+Add Column  =>  alter table table_name add column column_name datatype;
+Change Column Name  =>  alter table table_name change column old_column_name new_column_name datatype;
+Drop Column  => alter table tablename drop column column_name;
+
+
+4.RENAME:
+
+Rename Table  =>  rename table old_table_name to new_table_name;
+
+
+5.TRUNCATE:
+
+truncate table table_name;
+
+Eg:] truncate table product_info;
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_ust_db |
++------------------+
+| employee         |
+| product_info     |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from product_info;
+Empty set (0.00 sec)
+
+
+
+****************DML: It deals with data. We can manipulate the data by using Insert, Update, Delete commands***********
+
+1. INSERT: 
+(Inserting values into the table)
+
+i]   insert into table_name(column_name1, column_name2,.... column_nameN) values (value1, value2,...ValueN);
+				or
+ii]  insert into table_name values(value1, value2,....valueN);
+				or
+iii] To Insert at particular column  =>  insert into table_name(column_name1,column_name2) values (Value1, Value2);
+				or
+iv]  To Insert multiple records into the table  => insert into table_name (column_name1,column_name2,....column_nameN) values (val1, val2,...valN),(val1,val2,...valN);
+
+To display records present in table: select * from table_name;
+
+
+2. UPDATE:
+
+i]    update table_name set column_name = value;
+
+
+3. DELETE:
+
+i]   To delete all records  =>  delete from table_name;
+
+
+*************DQL: To retrieve the data from the databases*****************
+
+1. SELECT:
+
+i]  SELECTION: Retrieve data from rows as well as column  => select * from table_name;
+
+ii] PROJECTION: Retrieve data from particular column => select column_name from table_name;
+
+iii] JOIN:
+
+************************************************************************
+1. CREATE TABLE:
+   create table employee(eid int,name varchar(250) not null,mobileno int unique,dob date not null,
+   age int,doj date, bloodgroup varchar(10),deptno int, salary int,email varchar(170),gender varchar(10),primary key(eid));
+
+
+2. ALTER TABLE:
+    alter table employee add column designation varchar(100);
+
+
+3.
+mysql> desc employee;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| eid         | int(11)      | NO   | PRI | 0       |       |
+| name        | varchar(250) | NO   |     | NULL    |       |
+| mobileno    | int(11)      | YES  | UNI | NULL    |       |
+| dob         | date         | NO   |     | NULL    |       |
+| age         | int(11)      | YES  |     | NULL    |       |
+| doj         | date         | YES  |     | NULL    |       |
+| bloodgroup  | varchar(10)  | YES  |     | NULL    |       |
+| deptno      | int(11)      | YES  |     | NULL    |       |
+| salary      | int(11)      | YES  |     | NULL    |       |
+| email       | varchar(170) | YES  |     | NULL    |       |
+| gender      | varchar(10)  | YES  |     | NULL    |       |
+| designation | varchar(100) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+
+4.INSERT INTO TABLE:
+
+mysql>  insert into employee values(1,'Akshata Nayak',984563245,'1997-05-28',22,'2019-11-29','B+ve',10,50000,'akshata@gmail.com','female','S/W Developer');
+mysql>  insert into employee values(2,'Pooja Pednekar',987657834,'1997-09-08',22,'2019-11-29','B+ve',10,50000,'pooja@gmail.com','female','S/W Developer');
+mysql>  insert into employee values(3,'Meghana Vernekar',9878577341,'1998-06-05',22,'2019-11-29','O+ve',10,50000,'meghana@gmail.com','female','S/W Developer');
+
+
+5. mysql> select * from employee;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 987657834 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |
+|   5 | Sulaik Khan      |  98464356 | 1997-10-10 |   22 | 2019-10-29 | B+ve       |     30 |  30000 | sulaik@gmail.com  | male   | Tech-Support  |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+************************************DISTINCT*******************************************
+
+SYNTAX: select distinct column_name from table_name;
+
+mysql> select distinct designation from employee;
++---------------+
+| designation   |
++---------------+
+| S/W Developer |
+| tester        |
+| Tech-Support  |
+| HR            |
+| Manager       |
+| Clerk         |
++---------------+
+
+mysql> select distinct designation,deptno from employee;
++---------------+--------+
+| designation   | deptno |
++---------------+--------+
+| S/W Developer |     10 |
+| tester        |     20 |
+| Tech-Support  |     30 |
+| HR            |     30 |
+| Manager       |     40 |
+| Clerk         |     50 |
+| Clerk         |     40 |
++---------------+--------+
+
+
+***********************************ALIAS************************************************
+
+SYNTAX: select column_name as alias_name from table_name;
+
+mysql> select bloodgroup as bg from employee;
++-------+
+| bg    |
++-------+
+| B+ve  |
+| B+ve  |
+| O+ve  |
+| O+ve  |
+| B+ve  |
+| A+ve  |
+| A-ve  |
+| O+ve  |
+| AB+ve |
+| AB-ve |
++-------+
+
+                or
+
+mysql> select bloodgroup bg from employee;
++-------+
+| bg    |
++-------+
+| B+ve  |
+| B+ve  |
+| O+ve  |
+| O+ve  |
+| B+ve  |
+| A+ve  |
+| A-ve  |
+| O+ve  |
+| AB+ve |
+| AB-ve |
++-------+
+
+
+********************************WHERE CLAUSE***********************************
+
+SYNTAX: select * from table_name where condition;
+
+mysql> select * from employee where name='Salman Zaidi';
+
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+| eid | name         | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email            | gender | designation |
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+|   4 | Salman Zaidi | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com | male   | tester      |
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+1 row in set (0.00 sec)
+
+
+UPDATING THE RECORD OF EMPLOYEE TABLE:
+
+mysql> update employee set mobileno=983467229 where eid=2;
+Query OK, 1 row affected (0.19 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> select * from employee;
+
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |
+|   5 | Sulaik Khan      |  98464356 | 1997-10-10 |   22 | 2019-10-29 | B+ve       |     30 |  30000 | sulaik@gmail.com  | male   | Tech-Support  |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+10 rows in set (0.00 sec)
+
+
+
+DELETING RECORD FROM EMPLOYEE TABLE:
+
+mysql> delete from employee where eid=5;
+Query OK, 1 row affected (0.16 sec)
+
+mysql> select * from employee;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+9 rows in set (0.00 sec)
+
+ORDER OF EXECUTION OF WHERE CLAUSE:
+1] from
+2] where
+3] select
+
+
+********************************EXPRESSION*************************************
+
+
+
+*******************************ARITHEMATIC OPERATOR*****************************
+
+WAQ to display the salary of employee that is incremented to 5000.
+
+mysql> select salary+5000 as bonus from employee;
++-------+
+| bonus |
++-------+
+| 55000 |
+| 55000 |
+| 55000 |
+| 35000 |
+| 25000 |
+| 30000 |
+| 40000 |
+| 25000 |
+| 40000 |
++-------+
+
+
+WAQ to display the salary of employee that is decremented to 5000.
+
+mysql> select salary-5000 as decremented from employee;
++-------------+
+| decremented |
++-------------+
+|       45000 |
+|       45000 |
+|       45000 |
+|       25000 |
+|       15000 |
+|       20000 |
+|       30000 |
+|       15000 |
+|       30000 |
++-------------+
+
+WAQ to display the annual salary of employee
+
+mysql> select salary*12 as an_sal from employee;
++--------+
+| an_sal |
++--------+
+| 600000 |
+| 600000 |
+| 600000 |
+| 360000 |
+| 240000 |
+| 300000 |
+| 420000 |
+| 240000 |
+| 420000 |
++--------+
+
+WAQ to display the salary of employee for one day.
+
+mysql> select salary/30 as one_day_sal from employee;
++-------------+
+| one_day_sal |
++-------------+
+|   1666.6667 |
+|   1666.6667 |
+|   1666.6667 |
+|   1000.0000 |
+|    666.6667 |
+|    833.3333 |
+|   1166.6667 |
+|    666.6667 |
+|   1166.6667 |
++-------------+
+
+*******************************RELATIONAL OPERATOR*****************************
+
+WAQ to display the result of employee table whose designation is s/w developer
+
+
+mysql> select * from employee where designation='s/w developer';
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+
+
+WAQ to display all the records of employee excluding who is working in dept no 20;
+
+mysql> select * from employee where deptno<>20;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+
+WAQ to display the records of employee whose salary is greater than 30000.
+
+mysql> select * from employee where salary>30000;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+WAQ to display the records of employee whose age is less than 30.
+
+mysql> select * from employee where age<30;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+
+WAQ to display name, salary, emailid, mobileno whose age=18 or greater than 28.
+
+
+mysql> select name, mobileno, salary,email from employee where age>=28;
++--------+-----------+--------+------------------+
+| name   | mobileno  | salary | email            |
++--------+-----------+--------+------------------+
+| Vicky  |  98262546 |  25000 | vicky@gmail.com  |
+| Manhar | 943421611 |  20000 | manhar@gmail.com |
+| Yash   | 943423451 |  35000 | yash@gmail.com   |
++--------+-----------+--------+------------------+
+
+WAQ to diaplay whose salary less than or equal to 40000
+
+mysql> select * from employee where salary<=40000;
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+| eid | name         | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email            | gender | designation |
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+|   4 | Salman Zaidi | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com | male   | tester      |
+|   6 | Ahalya       | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com | male   | HR          |
+|   7 | Vicky        |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com  | male   | Manager     |
+|   8 | Ankita       |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com | female | Clerk       |
+|   9 | Manhar       | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com | male   | Clerk       |
+|  10 | Yash         | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com   | male   | Clerk       |
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+
+
+***************************************LOGICAL OPERATOR*******************************************
+
+*******************AND OPERATOR:************************
+
+SYNTAX: select * from table_name where condotion1 and condition2.
+
+WAQ to display employee who is working in dept no 20 as well as sal is greater than 25000
+
+mysql> select * from employee where deptno=20 and salary>25000;
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+| eid | name         | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email            | gender | designation |
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+|   4 | Salman Zaidi | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com | male   | tester      |
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+1 row in set (0.13 sec)
+
+
+WAQ to display name and salary from the employee table who is working in deptno 10 and 20
+mysql> select name, salary from employee where deptno=20 and deptno=10;
+
+
+WAQ to display employee name whose job designation is tester and age=25;
+
+mysql> select name from employee where designation='tester' and age=25;
+Empty set (0.00 sec)
+
+
+********************OR OPERATOR:**************************
+
+SYNTAX: selcect * from table_name where condition1 or condition2.
+
+WAQ to display all the records of employee who is working as a tester or having salary more than 40000
+mysql> select * from employee where designation='tester' or salary>40000;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+WAQ to display name, salary, age from employee table who is working in dept no 10, or 40 or 50.
+mysql> select name,salary,age from employee where deptno=10 or deptno=40 or eptno=50;
+
+WAQ to display employee details whose age is more than 25 and blood roup is B+ve.
+
+
+
+
+
+NOT OPERATOR:
+SYNTAX: select * from table_name where not condition.
+
+WAQ to display all the records of employee excluding tester.
+mysql> select * from employee where not designation='tester';
+mysql> select * from employee where designation<>'tester';
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+8 rows in set (0.57 sec)	
+
+WAQ to display name of all the employee who is working as HR or tester and salary is greater than 40000.
+ select * from employee where (designation='HR' or designation='Tester') and salary>40000;
+Empty set (0.00 sec)
+
+
+WAQ to display records of all the employee excluding sw developer.
+select * from employee where not(designation='S/W Developer' and deptno=40);
+
+ WAQ to display S/W developer who are working for deptno 10 or 40.
+select * from employee where(deptno=10 or deptno=40) and  designation='S/W Developer'
+    -> ;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+Order of Execution:
+1]NOT
+2]AND
+3]OR
+
+*******************************SPECIAL OPERATOR******************************************
+1] IN:
+Syntax: select * from tablename where columnname IN (val1, val2,....valN); 
+
+WAQ to display all the employees who is working in 40, 50, 60, 70, 80.
+
+mysql> select * from employee where deptno in(40,50,60,70,80);
++-----+--------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+| eid | name   | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email            | gender | designation |
++-----+--------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+|   7 | Vicky  |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com  | male   | Manager     |
+|   8 | Ankita |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com | female | Clerk       |
+|   9 | Manhar | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com | male   | Clerk       |
+|  10 | Yash   | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com   | male   | Clerk       |
++-----+--------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+
+WAQ to display name of all the employee who is working as a tester, HR ,or admin.
+mysql> select * from employee where designation in('Tester','HR','Admin');
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+| eid | name         | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email            | gender | designation |
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+|   4 | Salman Zaidi | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com | male   | tester      |
+|   6 | Ahalya       | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com | male   | HR          |
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+
+WAQ to dispaly the detail of tester, admin, s/w developer who are working in dept no 20 or 30 and salary is greater than 40000.
+
+mysql> select * from employee where designation in('S/W Developer','Tester','Admin') and deptno in(20,30) and salary>40000;
+Empty set (0.01 sec)
+
+2] NOT-IN
+Syntax: select * from table_name where columnname NOT IN(val1, val2,....valN).
+
+WAQTD all the records of employee excluding who is working as Tester, admin, HR.
+
+mysql> select * from employee where designation not in('HR','Tester','Admin')
+    -> ;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+WAQTD all the records of employee whose age 15, 20, 25, 30, 40 exclude all the details of tester and s/w Developer.
+
+mysql> select * from employee where age in(15,20,25,30,40) and designation not in('Tester','S/W Developer');
++-----+--------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+| eid | name   | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email            | gender | designation |
++-----+--------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+|   7 | Vicky  |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com  | male   | Manager     |
+|   9 | Manhar | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com | male   | Clerk       |
+|  10 | Yash   | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com   | male   | Clerk       |
++-----+--------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+
+3] BETWEEN:
+ When we want to search between certain range.
+ Syntax: select * from tablename where column_name between val1 and val2;
+
+WAQTD all the details of employee whose age is between 20 to 40;
+ select * from employee where age between 20 and 40;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+WAQTD all the details of employee who were hired during 2017.
+mysql> select * from employee where doj between '2017-01-01' and '2017-12-31';
++-----+------+-----------+------------+------+------------+------------+--------+--------+----------------+--------+-------------+
+| eid | name | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email          | gender | designation |
++-----+------+-----------+------------+------+------------+------------+--------+--------+----------------+--------+-------------+
+|  10 | Yash | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com | male   | Clerk       |
++-----+------+-----------+------------+------+------------+------------+--------+--------+----------------+--------+-------------+
+
+4] NOT BETWEEN
+Syntax: select * from tablename where column_name not between val1 and val2;
+
+Waqd all the records of employee excluding employee whose salary is in range of 25000 to 30000.
+mysql> select * from employee where salary not between 25000 and 30000;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+5] IS OPERATOR:
+
+It is used to check for null values.
+Syntax: select * from table_name where column_name is null;
+
+
+6] IS NOT OPERATOR:
+Syntax: select * from table_name where column_name is not null;
+
+7] LIKE:
+Syntax: select * from table_name where column_name like '_/%';
+_ : It will match only single value;
+% : It will match 0-n values;
+
+
+WAQTD all the details of the employee whose name starts with a.
+mysql> select * from employee where name like 'a%';
++-----+---------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name          | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+---------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   6 | Ahalya        | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   8 | Ankita        |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
++-----+---------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+3 rows in set (0.00 sec)
+
+WAQTD name of the employee whose second character is 'i'.
+mysql> select * from employee where name like '_i%';
++-----+-------+----------+------------+------+------------+------------+--------+--------+-----------------+--------+-------------+
+| eid | name  | mobileno | dob        | age  | doj        | bloodgroup | deptno | salary | email           | gender | designation |
++-----+-------+----------+------------+------+------------+------------+--------+--------+-----------------+--------+-------------+
+|   7 | Vicky | 98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com | male   | Manager     |
++-----+-------+----------+------------+------+------------+------------+--------+--------+-----------------+--------+-------------+
+1 row in set (0.00 sec)
+
+WAQTD the name of the employee which has atleast 2 l's in their name.
+mysql> select * from employee where name like '%l%l%';
+Empty set (0.00 sec)
+
+WAQTD the name of employee whose name starts with s and ends with p.
+mysql> select * from employee where name like 's%p';
+Empty set (0.00 sec)
+
+WAQTD the name of employee whose name starts with s and ends with i.
+mysql> select * from employee where name like 's%i';
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+| eid | name         | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email            | gender | designation |
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+|   4 | Salman Zaidi | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com | male   | tester      |
++-----+--------------+-----------+------------+------+------------+------------+--------+--------+------------------+--------+-------------+
+1 row in set (0.00 sec)
+
+WAQTD all the records of employee if the employee name begins with a or s.
+mysql> select * from employee where name like 'a%' or name like 's%';
++-----+---------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name          | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+---------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   4 | Salman Zaidi  | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |
+|   6 | Ahalya        | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   8 | Ankita        |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
++-----+---------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+WAQTD employees name, salary who is working in deptno 10, 20, 30 and job designation starts with s.
+mysql> select name,salary from employee where deptno in(10,20,30) and designation like 's%';
++------------------+--------+
+| name             | salary |
++------------------+--------+
+| Akshata Nayak    |  50000 |
+| Pooja Pednekar   |  50000 |
+| Meghana Vernekar |  50000 |
++------------------+--------+
+
+
+**************************************************************FUNCTIONS****************************************************************************
+functions are used to perform specific task.
+1] Single row function (Scalar Function).
+2] Multi row function (Aggregate Function).
+
+1] Single row function: For every single i/p we get single o/p.
+2] Multi row function: For n no of inputs we get single output.
+	 i] avg() : Return the average value.
+	ii] count(): It counts the number of rows.
+       iii] max() :Returns maximum value of the selected column.
+	iv] min(): Returns minimum value of the selected column.
+	 v] sum(): Returns sum of all the values of selected column.
+
+mysql> select max(salary) from employee;
++-------------+
+| max(salary) |
++-------------+
+|       50000 |
++-------------+
+1 row in set (0.14 sec)
+
+mysql> select min(salary) from employee;
++-------------+
+| min(salary) |
++-------------+
+|       20000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary) from employee;
++-------------+
+| sum(salary) |
++-------------+
+|      315000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from employee;
++-------------+
+| avg(salary) |
++-------------+
+|  35000.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from employee;
++----------+
+| count(*) |
++----------+
+|        9 |
++----------+
+1 row in set (0.11 sec)
+
+1] Order By:
+It is used to sort the result set in ascending or descending order.
+Syntax: select * from table_name where condition order by column_name asc/desc.
+
+Order of Execution:
+From
+Where
+Select
+Order by
+
+WAQTD all the results of the employee and salary should be arranged in descending order.
+mysql> select * from employee order by salary desc;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+
+***********************************************************************SUB QUERIES**********************************************************************************
+
+Syntax: selcet * from table_name where column_name operator (select * from table_name);
+Subquery: Query inside a query is known as sub query.
+-> Whatever we write within the parenthesis is known as Inner query.
+-> Whatever we write outside the parenthesis is known as Outer query.
+-> Inner query is executed first and will be input for the Outer query.
+-> Outer query will execute and provide the final result set.
+
+Subqueries are of two types:
+->Single Row SubQuery.
+->Multi Row SubQuery.
+
+1] Single row subquery:
+   Whenever we use relational operator and we provide a single value and we get only 1 record than this is known as single row sub query.
+
+WAQTD all the records of the employee whose date of joining is same as Akshata's Date.
+mysql> select * from employee where doj=(select doj from employee where name='Akshata Nayak');
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+3 rows in set (0.00 sec)
+
+WAQTD the second max salary from employee.
+mysql> select max(salary) from employee where salary<(select max(salary) from employee)
+    -> ;
++-------------+
+| max(salary) |
++-------------+
+|       35000 |
++-------------+
+
+
+*******************************************************************************************************************************************************************
+									DEPARTMENT TABLE
+
+mysql> create table department(
+    -> deptno int,
+    -> dname varchar(120),
+    -> location varchar(120),
+    -> primary key(deptno)
+    -> );
+Query OK, 0 rows affected (0.38 sec)
+
+mysql> desc department;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| deptno   | int(11)      | NO   | PRI | 0       |       |
+| dname    | varchar(120) | YES  |     | NULL    |       |
+| location | varchar(120) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+3 rows in set (0.22 sec)
+
+mysql> insert into department values(10,'Development','Mumbai'),(20,'Admin','Bengaluru'),(30,'Maintenance','Pune'),(40,'Operations','Hyderabad');
+Query OK, 4 rows affected (0.17 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from department;
++--------+-------------+-----------+
+| deptno | dname       | location  |
++--------+-------------+-----------+
+|     10 | Development | Mumbai    |
+|     20 | Admin       | Bengaluru |
+|     30 | Maintenance | Pune      |
+|     40 | Operations  | Hyderabad |
++--------+-------------+-----------+
+4 rows in set (0.00 sec)
+	
+*******************************************************************************************************************************************************************************
+								ANY OPERATOR
+
+It takes multiple values and we get the result set if any of the one value is satisfied.
+
+*******************************************************************************************************************************************************************************
+								ALL OPERATOR
+
+It takes multiple vlaues and we get the result set if all the values are satisfied.
+
+*******************************************************************************************************************************************************************************
+
+2] Multirow Subquery:
+   Whenever we use special operator and provide multiple values and it provides multiple rows as result set than it is known ass Multirow Subquery.
+
+
+WAQTD name of the employee who is working in a location which has atleast 1 'a' in the location
+
+mysql> select name from employee where deptno in(select deptno from department where location like '%a%');
++------------------+
+| name             |
++------------------+
+| Akshata Nayak    |
+| Pooja Pednekar   |
+| Meghana Vernekar |
+| Salman Zaidi     |
+| Vicky            |
+| Yash             |
++------------------+
+
+WAQTD all the records of the employee who is working in admin, Operations, Developement.
+
+mysql> select * from employee where deptno in(select deptno from department where dname in('Admin','Operations','Development'));
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+
+
+***********************************************************************************************************************************************************************
+								GROUP_BY
+
+It is used to group the records of the table according to the column specified.It will always execute row by row.
+
+Syntax: select count(*) from table_name groupby column_name;
+
+Order of Execution:
+1]From			1]From			1]From
+2]groupby		2]where			2]where
+3]select		3]groupby		3]groupby
+			4]select		4]having
+						5]select
+
+WAQTD the max salary for eaach dept.
+mysql> select max(salary) from employee group by deptno;
++-------------+
+| max(salary) |
++-------------+
+|       50000 |
+|       30000 |
+|       20000 |
+|       35000 |
+|       35000 |
++-------------+
+
+WAQTD the highest salary given to HR from each dept.
+mysql> select max(salary) from employee where designation='HR' group by deptno;
++-------------+
+| max(salary) |
++-------------+
+|       40000 |
++-------------+
+
+***********************************************************************************************************************************************************************
+										Having Clause
+
+->Having clause is only used with group by clause.
+->It is used to filter the records got from groupby clause.
+-> Whenever we are using having clause we are only passing one column_name.
+
+Order of Execution:
+
+1]From
+2]where
+3]groupby
+4]having
+5]select
+
+WAQTD deptno which has atleast 2 employees working.
+
+mysql> select deptno from employee group by deptno having count(*)>=2;
++--------+
+| deptno |
++--------+
+|     10 |
+|     30 |
+|     40 |
+|     50 |
++--------+ 
+
+***********************************************************************************************************************************************************************
+									Transactional Control Language
+1] roll back: Undo the changes done.
+2] commit: save permanently. (if we commit than it will not rollback).
+3] save point: We are declaring a point and from that point we can roll back everything.
+
+mysql> insert into product_info values(105,'mobile',1);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from product_info;
++------+--------+----------+
+| pid  | pname  | quantity |
++------+--------+----------+
+|  105 | mobile |        1 |
++------+--------+----------+
+1 row in set (0.00 sec)
+
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.02 sec)
+
+
+mysql> insert into product_info values(106,'mobile',12);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from product_info;
++------+--------+----------+
+| pid  | pname  | quantity |
++------+--------+----------+
+|  105 | mobile |        1 |
+|  106 | mobile |       12 |
++------+--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> select * from product_info;
++------+--------+----------+
+| pid  | pname  | quantity |
++------+--------+----------+
+|  105 | mobile |        1 |
++------+--------+----------+
+1 row in set (0.00 sec)
+
+
+mysql> select * from product_info;
++------+--------+----------+
+| pid  | pname  | quantity |
++------+--------+----------+
+|  105 | mobile |       10 |
++------+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from product_info;
++------+--------+----------+
+| pid  | pname  | quantity |
++------+--------+----------+
+|  105 | mobile |       10 |
++------+--------+----------+
+1 row in set (0.00 sec)
+
+mysql>
+
+mysql> savepoint a;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> insert into product_info values(106,'mobile',12);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into product_info values(107,'kada',11);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> savepoint b;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update product_info set quantity=1 where pid=105;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from product_info;
++------+--------+----------+
+| pid  | pname  | quantity |
++------+--------+----------+
+|  105 | mobile |        1 |
+|  106 | mobile |       12 |
+|  107 | kada   |       11 |
++------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> rollback to a;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from product_info;
++------+--------+----------+
+| pid  | pname  | quantity |
++------+--------+----------+
+|  105 | mobile |       10 |
++------+--------+----------+
+1 row in set (0.00 sec)
+
+************************************************************************************************************************************************************************
+										JOINS
+
+1]Cartesian Join or Cross Join:
+Record of first table will be merged with all the records of second table.
+
+Syntax: select * from table_name1 cross join table_name2;
+
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   | deptno | dname       | location  |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |     10 | Development | Mumbai    |
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |     20 | Admin       | Bengaluru |
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |     30 | Maintenance | Pune      |
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |     40 | Operations  | Hyderabad |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |     10 | Development | Mumbai    |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |     20 | Admin       | Bengaluru |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |     30 | Maintenance | Pune      |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |     40 | Operations  | Hyderabad |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |     10 | Development | Mumbai    |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |     20 | Admin       | Bengaluru |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |     30 | Maintenance | Pune      |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |     40 | Operations  | Hyderabad |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |     10 | Development | Mumbai    |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |     20 | Admin       | Bengaluru |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |     30 | Maintenance | Pune      |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |     40 | Operations  | Hyderabad |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |     10 | Development | Mumbai    |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |     20 | Admin       | Bengaluru |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |     30 | Maintenance | Pune      |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |     40 | Operations  | Hyderabad |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |     10 | Development | Mumbai    |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |     20 | Admin       | Bengaluru |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |     30 | Maintenance | Pune      |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |     40 | Operations  | Hyderabad |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |     10 | Development | Mumbai    |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |     20 | Admin       | Bengaluru |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |     30 | Maintenance | Pune      |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |     40 | Operations  | Hyderabad |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |     10 | Development | Mumbai    |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |     20 | Admin       | Bengaluru |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |     30 | Maintenance | Pune      |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |     40 | Operations  | Hyderabad |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |     10 | Development | Mumbai    |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |     20 | Admin       | Bengaluru |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |     30 | Maintenance | Pune      |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |     40 | Operations  | Hyderabad |
+|  11 | Ashwin           |  93537482 | 1999-04-13 |   20 | 2019-12-23 | B+ve       |     30 |  40000 | ashwin@gmail.com  | male   | HR            |     10 | Development | Mumbai    |
+|  11 | Ashwin           |  93537482 | 1999-04-13 |   20 | 2019-12-23 | B+ve       |     30 |  40000 | ashwin@gmail.com  | male   | HR            |     20 | Admin       | Bengaluru |
+|  11 | Ashwin           |  93537482 | 1999-04-13 |   20 | 2019-12-23 | B+ve       |     30 |  40000 | ashwin@gmail.com  | male   | HR            |     30 | Maintenance | Pune      |
+|  11 | Ashwin           |  93537482 | 1999-04-13 |   20 | 2019-12-23 | B+ve       |     30 |  40000 | ashwin@gmail.com  | male   | HR            |     40 | Operations  | Hyderabad |
++-----+------------------+-----------++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+2]Inner Join:
+Inner join is used to obtain only matching records from the table.
+
+Syntax: select * from table_name1 inner join table_name2 on condition;
+mysql> select * from employee e inner join department d on e.deptno=d.deptno;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   | deptno | dname       | location  |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |     10 | Development | Mumbai    |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |     10 | Development | Mumbai    |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |     10 | Development | Mumbai    |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |     20 | Admin       | Bengaluru |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |     30 | Maintenance | Pune      |
+|  11 | Ashwin           |  93537482 | 1999-04-13 |   20 | 2019-12-23 | B+ve       |     30 |  40000 | ashwin@gmail.com  | male   | HR            |     30 | Maintenance | Pune      |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |     40 | Operations  | Hyderabad |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |     40 | Operations  | Hyderabad |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+
+*************************************************************************************************************************************************************************
+
+										OUTER JOIN
+1]Left Outer Join
+2]Right Outer Join
+3]Full Outer Join
+
+1] Left Outer Join : Is a combination of inner join and unmatched records present in left table.
+Syntax: select * from table_name1 left outer join table_name2 on condition;
+Syntax: select * from table1 t1, table2 t2 where t1.column_name=t2.column_name(+);
+
+mysql> select * from employee e left outer join department d on e.deptno=d.deptno;
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+| eid | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   | deptno | dname       | location  |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+|   1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |     10 | Development | Mumbai    |
+|   2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |     10 | Development | Mumbai    |
+|   3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |     10 | Development | Mumbai    |
+|   4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |     20 | Admin       | Bengaluru |
+|   6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |     30 | Maintenance | Pune      |
+|   7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |     40 | Operations  | Hyderabad |
+|   8 | Ankita           |  94562821 | 2000-04-29 |   19 | 2019-08-04 | O+ve       |     50 |  35000 | ankita@gmail.com  | female | Clerk         |   NULL | NULL        | NULL      |
+|   9 | Manhar           | 943421611 | 1989-05-08 |   30 | 2015-06-21 | AB+ve      |     50 |  20000 | manhar@gmail.com  | male   | Clerk         |   NULL | NULL        | NULL      |
+|  10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |     40 | Operations  | Hyderabad |
+|  11 | Ashwin           |  93537482 | 1999-04-13 |   20 | 2019-12-23 | B+ve       |     30 |  40000 | ashwin@gmail.com  | male   | HR            |     30 | Maintenance | Pune      |
++-----+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+
+
+2] Right Outer Join: Is a combination of inner join and unmatched record of right table.
+Syntax: select * from table_name1 right outer join table_name2 on condition;
+Syntax: select * from table1 t1, table2 t2 where t1.column_name(+)=t2.column_name;
+
+mysql> select * from department d right outer join employee e on e.deptno=d.deptno;
+mysql> select * from employee e right outer join department d on e.deptno=d.deptno;
++------+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+| eid  | name             | mobileno  | dob        | age  | doj        | bloodgroup | deptno | salary | email             | gender | designation   | deptno | dname       | location  |
++------+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+|    1 | Akshata Nayak    |  98456321 | 1997-05-28 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | akshata@gmail.com | female | S/W Developer |     10 | Development | Mumbai    |
+|    2 | Pooja Pednekar   | 983467229 | 1997-09-08 |   22 | 2019-11-29 | B+ve       |     10 |  50000 | pooja@gmail.com   | female | S/W Developer |     10 | Development | Mumbai    |
+|    3 | Meghana Vernekar | 987857341 | 1998-06-05 |   22 | 2019-11-29 | O+ve       |     10 |  50000 | meghana@gmail.com | female | S/W Developer |     10 | Development | Mumbai    |
+|    4 | Salman Zaidi     | 984686731 | 1992-06-05 |   27 | 2021-11-21 | O+ve       |     20 |  30000 | salman@gmail.com  | male   | tester        |     20 | Admin       | Bengaluru |
+|    6 | Ahalya           | 984645326 | 1997-03-06 |   22 | 2019-08-04 | A+ve       |     30 |  20000 | ahalya@gmail.com  | male   | HR            |     30 | Maintenance | Pune      |
+|   11 | Ashwin           |  93537482 | 1999-04-13 |   20 | 2019-12-23 | B+ve       |     30 |  40000 | ashwin@gmail.com  | male   | HR            |     30 | Maintenance | Pune      |
+|    7 | Vicky            |  98262546 | 1989-03-06 |   30 | 2019-08-04 | A-ve       |     40 |  25000 | vicky@gmail.com   | male   | Manager       |     40 | Operations  | Hyderabad |
+|   10 | Yash             | 943423451 | 1989-02-06 |   30 | 2017-08-03 | AB-ve      |     40 |  35000 | yash@gmail.com    | male   | Clerk         |     40 | Operations  | Hyderabad |
++------+------------------+-----------+------------+------+------------+------------+--------+--------+-------------------+--------+---------------+--------+-------------+-----------+
+
+3] Full Outer Join:
+It obtains all the unmatched records of both table.
+
+***************************************************************************************************************************************************************************
+										Natural Join
+
+->Natural Join is similar to inner join but we donot specify any condition.
+->Natural Join provides same o/p as inner join if the records matches else returns catesian join o/p.
+
+
+***************************************************************************************************************************************************************************
+										Self Join
+->Joining the same table records is called as Self Join.
+Syntax: select * from table t1 join table t2 on condition.
+	select * from table t1, table t2 where condition.
+
+***********************************************************************************************************************************************************************
+
+
+Key Attribute:
+->The attribute with which we can identify the records uniquely.
+->All the attributes except key attribute is known as non key attribute.
+
+1]Prime Key Attribute: Among the key attributes an attributes chosen to identify the records in the table uniquely.
+2]Non Prime Key Attributes: Except the prime key all the attributes are known as non prime key attribute.
+3]Composite Key: Combination of two or more key attributes which is used to identify a record uniquely is known as composite key.
+4]Foreign Key: Used to establish connection between two tables.
+5]Super key: The set of all the key attributes is known as Super Key attribute.
+
+***********************************************************************************************************************************************************************
+									
+									FUNCTIONAL DEPENDENCY
+
+A relation which exists such that an attribute determines another attribute uniquely is known as functional dependency.
+
+R -> {x,y}
+x -> y
+x is determinant(unique).
+y is dependant.
+
+There are 3 types of functional dependancy:
+1] Total Functional Dependancy.
+2] Partial Functional Dependancy.
+3] Transitive
+
+1] Total Functional Dependancy:
+If all the attributes of a relation determined by a key attribute is known as total functional dependancy.
+R -> {a, b, c, d}
+a -> b
+a -> c
+a -> d (All attributes aree dependent on a)
+
+2] Partial Functional Dependancy:
+->A relation is said to have if it consists a composite key attribute.
+->There exists an dependacy such that an attribute can be determined by another key attribute which is the part of composite key.
+
+R->{a, b, c, d}
+{a,b} -> {c,d}
+{a} -> {c}
+{a, b} -> {d}
+
+3] Transitive:
+A relation is said to have transitional functional dependancy if there exists a relation such that an attr is detemined by one key attribute which inturn 
+is determined by the key attribute that is known as TFD.
+
+**********************************************************************************************************************************************************************
+										NORMALIZATION
+
+The process of decomposing the table into small table in order to remove redundancy and anomal by identifying dependancy is known as Normalization.
+The process of reducing the table into normal form is known 
+
+NORMAL FORM:
+A state of table without redundancy and anamolly is known as Normal Form.
+Anomally is the problem that is occured during DML operation.
+
+1st Normal Form:
+A table is said to be in the 1st normal form if it satisfies the following conditiom:
+1] A table should not contain duplicate records.
+2] Every cell in the table should be a single value (atomic value).
+
+2nd Normal Form:
+A table is said to be 2nd Normal form if it satisfies:
+1] It should follow the 1st Normal Form.
+2] The table should not contain partial functional dependancy.
+
+3rd NF:
+1] Must Satisfy the 2nd NF.
+2] It should not have Transitive Functional Dependancy.
+
+BCNF is extended version of 3NF.

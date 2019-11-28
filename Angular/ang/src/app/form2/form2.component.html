@@ -1,0 +1,55 @@
+<!-- //creating form -->
+<form class="col-md-4 offset-4 mt-5 mb-5 card card-body" #form="ngForm" (ngSubmit)="loginData2(form)">
+    <h1 class="text-center bg-dark text-white">Register Here</h1>
+   
+    <div class="form-group">
+        <input type="text" name="candname" id="candname" class="form-control" placeholder="Candidate Name" #candname="ngModel" ngModel required>
+        <div *ngIf="candname.touched && candname.invalid">
+            <p *ngIf="candname.errors.required" class="alert alert-danger">*this field is required</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="yoe" id="yoe" class="form-control" placeholder="Years of Experience" #yoe="ngModel" ngModel required>
+        <div *ngIf="yoe.touched && yoe.invalid">
+            <p *ngIf="yoe.errors.required" class="alert alert-danger">*this field is required</p>
+        </div>
+    </div>
+    <div class="form-check form-check-inline">
+        
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <label class="form-check-label" for="inlineRadio1">Male</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <label class="form-check-label" for="inlineRadio2">Female</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+        <label class="form-check-label" for="inlineRadio3">Others</label>
+      </div>
+    <div class="form-group">
+        <input type="text" name="cctc" id="cctc" class="form-control" placeholder="C C T C" #cctc="ngModel" ngModel required>
+        <div *ngIf="cctc.touched && cctc.invalid">
+            <p *ngIf="cctc.errors.required" class="alert alert-danger">*this field is required</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="ectc" id="ectc" class="form-control" placeholder="ECTC" #ectc="ngModel" ngModel required>
+        <div *ngIf="ectc.touched && ectc.invalid">
+            <p *ngIf="ectc.errors.required" class="alert alert-danger">*this field is required</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="locate" id="locate" class="form-control" placeholder="Ready to ReLocate?" #locate="ngModel" ngModel required>
+        <div *ngIf="locate.touched && locate.invalid">
+            <p *ngIf="locate.errors.required" class="alert alert-danger">*this field is required</p>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-outline-success float-right" [disabled]="form.invalid">Schedule Interview</button>
+    </div>
+</form>

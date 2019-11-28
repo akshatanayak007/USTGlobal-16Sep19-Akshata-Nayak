@@ -1,0 +1,4 @@
+#grad{
+    height: 500px;
+    background: linear-gradient(to right, rgb(107, 6, 107), rgb(11, 182, 240), rgb(31, 31, 241), rgb(82, 253, 82), yellow, orange, red);
+}

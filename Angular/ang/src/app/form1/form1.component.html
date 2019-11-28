@@ -1,0 +1,56 @@
+<!-- //creating form -->
+<form class="col-md-4 offset-4 mt-5 mb-5 card card-body" #form="ngForm" (ngSubmit)="loginData1(form)">
+    <h1 class="text-center bg-dark text-white">Register Here</h1>
+    <div class="form-group">
+        <input type="text" name="cname" id="cname" class="form-control" placeholder="Company" #cname="ngModel" ngModel required>
+        <div *ngIf="cname.touched && cname.invalid">
+            <p *ngIf="cname.errors.required" class="alert-danger">*this field is required</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="skills" id="skills" class="form-control" placeholder="Skills" #skills="ngModel" ngModel required >
+        <div *ngIf="skills.touched && skills.invalid">
+            <p *ngIf="skills.errors.required" class="alert alert-danger">*this field is required</p>
+        </div>
+       
+    
+        
+    </div>
+    
+      <div class="btn-group">
+        <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          Skills
+        </button><br> -->
+        <div class="dropdown-menu dropdown-align dropdown-menu-left" >
+          <button class="dropdown-item" name="java" type="button" (onclick)=flag1()>Java</button>
+          <button class="dropdown-item" name="sql" type="button"(onclick)=flag2()>SQL</button>
+          <button class="dropdown-item" name="cplus" type="button" (onclick)=flag3()>C++</button>
+        </div>
+      </div>
+
+    <div class="form-group">
+        <input type="number" name="yoe" id="yoe" class="form-control" placeholder="Years of Experience" #yoe="ngModel" ngModel required>
+        <div *ngIf="yoe.touched && yoe.invalid">
+            <p *ngIf="yoe.errors.required" class="alert alert-danger">*this field is required</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="number" name="mctc" id="mctc" class="form-control" placeholder="MCTC" #mctc="ngModel" ngModel required>
+        <div *ngIf="mctc.touched && mctc.invalid">
+            <p *ngIf="mctc.errors.required" class="alert alert-danger">*this field is required</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="location" name="location" id="location" class="form-control" placeholder="Location" #location="ngModel" ngModel required>
+        <div *ngIf="location.touched && location.invalid">
+            <p *ngIf="location.errors.required" class="alert alert-danger">*this field is required</p>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-outline-success float-right" [disabled]="form.invalid">Add Requirement</button>
+    </div>
+</form>

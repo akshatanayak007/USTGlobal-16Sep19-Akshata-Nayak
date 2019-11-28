@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+a{
+    color:red;
+}
+table{
+    background:lightblue;
+
+}
+tr{
+    border:0px;
+}
+</style>
+<body>
+        <form action="">
+                <table>
+                   
+               <tr><td colspan="1"><label for="name">Full Name<a>*</a></label></td>
+                <td><input type="text" name="name" id="name" required></td>
+                <td><input type="text" name="mname" id="mname" required></td>
+                <td><input type="text" name="lname" id="lname" required></td> </tr>
+                <tr>
+                    <td colspan="1"></td>
+                    <td><label for="fname" style="color: grey; text-align:center;font-size:14px">First Name</label></td>
+                    <td><label for="mname" style="color: grey;font-size:14px">Middle Name</label></td>
+                    <td><label for="lname" style="color: grey;font-size:14px">Last Name</label></td>
+                </tr>
+                <tr>
+                        <td> <label for="address" >Current Address</label></td>
+                    <td colspan="2"><input type="text" size="45"name="address1" id="address1"></td></tr>
+                  <tr>
+                    <td rowspan="1"></td>
+                    <td><label for="fname" style="color:grey; text-align: center; font-size:14px ">Address1</label></td>
+                    
+                </tr>
+
+                <tr>
+                        <td rowspan="1"></td>
+                    <td colspan="2"><input type="text" size="45"name="address2" id="address1"></td></tr></tr>
+                    <td rowspan="1"></td>
+                    <td><label for="fname" style="color:grey; text-align: center;font-size:14px">Address2</label></td>
+            
+               
+    
+               <tr>
+                   <td rowspan="4"></td>
+                    <td><input type="text" name="name" id="name"></td>
+                    <td><input type="text" name="name" id="lname"></td>
+               </tr>
+               <tr>
+                   <td><label for="city" style="color:grey; text-align: center;font-size:14px">City</label>
+                   <td><label for="state" style="color:grey; text-align: center;font-size:14px">State/Proviance</td>
+               </tr>
+               <tr>
+                   <td><input type="text" name="post" id="post"></td>
+               <td><select name="month" id="month">
+                    <option value="0" selected disabled>Please Select</option>
+                    <option value="jan">America</option>
+                    <option value="feb">Austrailia</option>
+                    <option value="mar">India</option>
+                    <option value="apr">Nepal</option>
+               </td>
+                    </select>
+                </tr>
+                <tr>
+                        
+                        <td><label for="area" style="color:grey; text-align: center;font-size:14px">Area Code</label>
+                        <td><label for="country" style="color:grey; text-align: center;font-size:14px">Country</td>
+                    </tr>
+                <tr><td colspan="1"><label for="email">Email Address<a>*</a></label></td>
+                    <td colspan="2"><input type="text" size='45' name="name" id="email" required placeholder="ex:myname@gmail.com"></td>
+
+                 </tr>
+      
+                 <tr><td colspan="1"><label for="name">Phone Number<a>*</a></label></td>
+                        <td colspan="1"><input type="tel" size='10' name="phone" id="phone" required placeholder="Area code"></td>
+                        <td colspan="1"><input type="tel" size='20' name="phone" id="phone" required placeholder="Phone Number"></td>
+                </tr>
+                <tr><td colspan="1"><label for="DOB">Date of Birth</label><a>*</a></label></td>
+                    <td><select name="Month" id="Month">
+                        <option value="Jan" size='20'>January</option>
+                        <option value="feb">February</option>
+                        <option value="mar">March</option>
+                        <option value="apr">April</option>
+                   </td>
+                        </select>
+                        <td><select name="Day" id="Day">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                       </td>
+                            </select>
+
+                            <td><select name="Day" id="Day">
+                                <option value="1">1997</option>
+                                <option value="2">1998</option>
+                                <option value="3">1999</option>
+                                <option value="4">2000</option>
+                           </td>
+                                </select>
+                
+                    </tr>
+
+               </table>
+         </form>
+</body>
+</html>
