@@ -13,8 +13,8 @@
 		<form action="./login" method="post">
 			<table>
 				<tr>
-					<td>Retailer_id:</td>
-					<td><input type="number" name="retailer_id"></td>
+					<td>Email</td>
+					<td><input type="email" name="email"></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
@@ -28,6 +28,6 @@
 			</table>
 		</form>
 	</fieldset>
-	<a href="./createprofile">click here to register</a>
+	<a href="./register">click here to register</a>
 </body>
 </html>

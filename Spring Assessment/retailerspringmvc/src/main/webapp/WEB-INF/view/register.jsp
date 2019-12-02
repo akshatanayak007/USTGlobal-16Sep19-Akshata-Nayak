@@ -9,12 +9,8 @@
 <body>
 <fieldset>
 		<legend>Login</legend>
-		<form action="./createprofile" method="post">
+		<form action="./register" method="post">
 			<table>
-				<tr>
-					<td>Retailer_id:</td>
-					<td><input type="number" name="retailer_id"></td>
-				</tr>
 				<tr>
 					<td>NAME:</td>
 					<td><input type="text" name="name"></td>
