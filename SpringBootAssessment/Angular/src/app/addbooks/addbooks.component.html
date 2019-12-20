@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+  <a class="navbar-brand" href="#">Library</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/get-book" >Home <span class="sr-only">(current)</span></a>
+      </li>
+     
+      <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/get-book">Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/student-data">Student Details</a>
+      </li> -->
+     
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-info my-2 my-sm-0"(click)="logout()">Logout</button>&nbsp;&nbsp;
+        </form>    
+  </ul>
+
+  </div>
+</nav>
+<div class="form">
+    <form action=" " style="display: inline-block; align-content: center;" #form="ngForm" (ngSubmit)="addbook(form)">
+      
+        <div class="card card-body" style="width:500px; align-content: center;">
+          <h1>Add Product</h1>
+          <hr>
+         
+
+          <label for="cat"><b>Category</b></label>
+          <input type="text" placeholder="Enter Category" name="category" required class="form-control" #b_id="ngModel" ngModel>
+
+          <label for="name"><b>Company</b></label>
+          <input type="text" placeholder="Enter Company" name="company" required class="form-control" #b_company="ngModel" ngModel>
+
+          <label for="proname"><b>Product Name</b></label>
+          <input type="text" placeholder="Enter Product Name" name="name" required class="form-control" #a_name="ngModel" ngModel>
+
+          <label for="proprice"><b>Product Price</b></label>
+          <input type="number" placeholder="Enter Product Price" name="price" required class="form-control" #a_price="ngModel" ngModel>
+
+          <label for="proname"><b>Product Quantity</b></label>
+          <input type="number" placeholder="Enter Product Name" name="quantity" required class="form-control" #a_quantity="ngModel" ngModel>
+      
+          <button class="registerbtn"type="submit">Add</button>
+        </div>
+      
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn" >Cancel</button>
+        </div>
+      </form>
+    </div>
+

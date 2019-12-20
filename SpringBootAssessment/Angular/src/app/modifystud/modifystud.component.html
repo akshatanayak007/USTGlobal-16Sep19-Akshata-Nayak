@@ -1,0 +1,26 @@
+
+<div class="form">
+    <form action=" " style="display: inline-block; align-content: center;" #form="ngForm" (ngSubmit)="modifybook(form)">
+      
+        <div class="card card-body" style="width:500px; align-content: center;">
+          <h1>Modify Student</h1>
+          <hr>
+          <label for="sid"><b>Student ID</b></label>
+          <input type="number" placeholder="Enter Student ID you want to change" name="sid" required class="form-control" #s_id="ngModel" ngModel>
+      
+          <label for="sname"><b>Student Name</b></label>
+          <input type="text" placeholder="Enter New Student Name" name="sname" required class="form-control" #s_name="ngModel" ngModel>
+
+          <label for="usn"><b>USN</b></label>
+          <input type="text" placeholder="Enter New USN of Student" name="usn" required class="form-control" #usn="ngModel" ngModel>
+      
+          <button class="registerbtn"type="submit">Modify</button>
+        </div>
+      
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn" >Cancel</button>
+        </div>
+      </form>
+    </div>
+
+

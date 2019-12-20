@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+  <a class="navbar-brand" href="#">Library</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/get-book" >Home <span class="sr-only">(current)</span></a>
+      </li>
+     
+      <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/get-book">Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/student-data">Student Details</a>
+      </li> -->
+     
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+      <form class="form-inline my-2 my-lg-0">
+          <button class="btn btn-outline-info my-2 my-sm-0"(click)="logout()">Logout</button>&nbsp;&nbsp;
+          </form>           
+  </ul>
+ 
+  </div>
+</nav>
+<div class="form">
+    <form action=" " style="display: inline-block; align-content: center;" #form="ngForm" (ngSubmit)="modifybook(form)">
+      
+        <div class="card card-body" style="width:500px; align-content: center;">
+          <h1>Modify Librarian</h1>
+          <hr>
+          <label for="lid"><b>Librarian ID</b></label>
+          <input type="number" placeholder="Enter Librarian Id you want to Modify" name="lid" required class="form-control" #l_id="ngModel" ngModel>
+      
+          <label for="name"><b>Librarian Name</b></label>
+          <input type="text" placeholder="Enter New Librarian Name" name="name" required class="form-control" #l_name="ngModel" ngModel>
+
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email Here" name="email" required class="form-control" #email="ngModel" ngModel>
+
+          <label for="password"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password" required class="form-control" #psw="ngModel" ngModel>
+      
+          <button class="registerbtn"type="submit">Modify</button>
+        </div>
+      
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn" >Cancel</button>
+        </div>
+      </form>
+    </div>
+

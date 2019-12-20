@@ -1,0 +1,28 @@
+
+<div class="form">
+    <form action=" " style="display: inline-block; align-content: center;" #form="ngForm" (ngSubmit)="login(form)">
+      
+        <div class="card card-body" style="width:500px; align-content: center;">
+          <h1>Login</h1>
+          <p>Please Login Here.</p>
+          <hr>
+          <label for="uname"><b>ID</b></label>
+          <input type="text" placeholder="Enter ID" name="id" required class="form-control" #user_id="ngModel" ngModel>
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required class="form-control" #user_password="ngModel" ngModel>
+      
+         
+          <button type="submit">Login</button>
+          <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label>
+        </div>
+      
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+      </form>
+    </div>
+    <a *ngIf="logins" href="#"> You are SuccessFully Logged In</a>

@@ -1,0 +1,112 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <a class="navbar-brand" href="#">Library</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/get-book" >Home <span class="sr-only">(current)</span></a>
+        </li>
+    
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-info my-2 my-sm-0"(click)="logout()">Logout</button>&nbsp;&nbsp;
+            </form>           
+    </ul>
+   
+    </div>
+  </nav>
+    
+<a style="color:maroon; font-size: larger; font-weight: 600; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"routerLink="/add-book">Add Products Here </a>
+<a style="margin-left:500px;color:maroon; font-size: larger; font-weight: 600; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"routerLink="/issue">All Ordered Products </a>
+
+
+      
+
+
+
+<h2 style="text-align:center; background-color: chartreuse;">You are Successfully Logged In </h2>
+<h4 style="text-align: center;">Search Product By Name Here</h4>
+<form class="form-inline my-2 my-lg-0" #form="ngForm" (ngSubmit)="searchBook(form)">
+    <input name="name" style="align-content: center; margin-left: 550px;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+    class="form-control" #s_name="ngModel" ngModel>&nbsp;&nbsp;
+    <button class="btn btn-danger" type="submit">Search</button>
+    <!-- <a routerLink="/get-book" >Click Here to Get all Books</a>
+     <td><button class="btn btn-danger" (click)="goToPage('get-book')" >Edit</button></td> -->
+</form>
+<table *ngIf="isOnline" class="table book-class table-bordered table-striped table-dark mt-5 mb-5 col-md-8 offset-2" >
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Company</th>
+            <th>Product Category</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor ="let book of books; index as i">
+            <td>{{i+1}}</td>
+            <td>{{book.pid}}</td>
+            <td>{{book.name}}</td>
+            <td>{{book.company}}</td>
+            <td>{{book.category}}</td>
+            <td>{{book.price}}</td>
+            <td>{{book.quantity}}</td>
+            <td><button class="btn btn-danger" (click)="goToPage('issue')">Order</button></td>
+            <td><button class="btn btn-danger" (click)="goToPage('edit-book')" >Modify</button></td>
+            <td>
+                <button class="btn btn-danger" (click)="delBook(book)" >Delete</button></td>
+                <!-- <div class="form">
+                    <form action=" " style="display: inline-block; align-content: center;" #form="ngForm" (ngSubmit)="delBook(book)">
+                <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </div> -->
+            <!-- </td> -->
+        </tr>
+    </tbody>
+</table>
+
+<table *ngIf="!(isOnline)"class="table book-class table-bordered table-striped table-dark mt-5 mb-5 col-md-8 offset-2">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Company</th>
+            <th>Product Cotegory</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor ="let book of books; index as i">
+            <td>{{i+1}}</td>
+            <td>{{book.pid}}</td>
+            <td>{{book.name}}</td>
+            <td>{{book.company}}</td>
+            <td>{{book.category}}</td>
+            <td>{{book.price}}</td>
+            <td>{{book.quantity}}</td>
+            <td><button class="btn btn-danger" (click)="goToPage('edit-book')" >Edit</button></td>
+            <td>
+                <button class="btn btn-danger" (click)="delBook(book)" >Delete</button></td>
+                <td>
+                    <button class="btn btn-danger" (click)="retBook(book)" >Return</button></td>  
+                <!-- <div class="form">
+                    <form action=" " style="display: inline-block; align-content: center;" #form="ngForm" (ngSubmit)="delBook(book)">
+                <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </div> -->
+            <!-- </td> -->
+        </tr>
+    </tbody>
+</table>
+
+ 
