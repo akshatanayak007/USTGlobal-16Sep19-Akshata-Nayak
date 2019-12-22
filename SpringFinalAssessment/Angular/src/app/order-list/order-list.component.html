@@ -1,0 +1,29 @@
+<input type="search" name="search" [(ngModel)]='search' placeholder="Enter name of book to search..."
+    class="form-control col-md-4 offset-md-4 mb-3 mt-5">
+<div class="panel-body">
+    <table class="table table-hover table-sm table-bordered">
+
+        <thead class="thead-light">
+            <tr>
+                <th scope="row">ORDER_ID</th>
+                <th scope="row">TOTAL_PRICE</th>
+                <th scope="row">TOTAL_PRICE_WITH_GST</th>
+                <th scope="row">ADD ORDERS</th>
+                <th scope="row">REMOVE ORDERS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let orders of order; index as i">
+                <td>{{orders.order_id}}</td>
+                <td>{{orders.total_price}}</td>
+                <td>{{orders.total_price_with_gst}}</td>
+
+                <td>
+                    <button type="button" routerLink="/add-order" class="btn btn-primary">Add order</button>
+                </td>
+                <td>
+                    <button (click)="deleteOrder(order)" type="button" class="btn btn-primary">Remove order</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>

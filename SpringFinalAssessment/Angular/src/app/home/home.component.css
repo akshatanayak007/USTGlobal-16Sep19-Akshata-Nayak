@@ -1,0 +1,7 @@
+.image{
+    height:38em;
+    background-size: cover;
+    width: auto;
+    background-image: url('https://cdn.pixabay.com/photo/2019/03/23/15/09/cafe-4075492_960_720.jpg');
+    background-position: 50% 50%;
+}

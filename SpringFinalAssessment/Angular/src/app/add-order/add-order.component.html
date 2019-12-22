@@ -1,0 +1,30 @@
+
+<div class="form">
+    <form action=" " style="display: inline-block; align-content: center;" #form="ngForm" (ngSubmit)="addOrder(form)">
+      
+        <div class="card card-body" style="width:500px; align-content: center;">
+          <h1>Add Order</h1>
+          <hr>
+      
+          <label for="name"><b>Order ID</b></label>
+          <input type="number" name="order_id" id="order_id" class="form-control" placeholder="enter order_id..."
+            #order_id="ngModel" ngModel>
+
+          <label for="category"><b>Total Price</b></label>
+          <input type="number" name="total_price" id="total_price" class="form-control" placeholder="enter total_price..."
+          #total_price="ngModel" ngModel>
+         
+          <label for="quantity"><b>Total Price with GST</b></label>
+          <input type="number" name="total_price_with_gst" id="total_price_with_gst" class="form-control"
+            placeholder="enter total_price_with_gst..." #total_price_with_gst="ngModel" ngModel>
+          
+         
+          <button class="registerbtn"type="submit">Add Order</button>
+        </div>
+      
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn" >Cancel</button>
+        </div>
+      </form>
+    </div>
+
